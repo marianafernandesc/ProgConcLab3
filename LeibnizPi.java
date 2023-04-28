@@ -102,7 +102,7 @@ class LeibnizPi {
          System.out.println("Soma = " + pi);
       }
       System.out.println("Pi = " + pi);
-      System.out.println("Terminou"); 
+      //System.out.println("Terminou"); 
       pis.validarErroRelativo(pi);
    }
 }
