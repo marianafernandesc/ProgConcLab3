@@ -13,11 +13,14 @@ class Pi {
 
    public void initVet(int n_threads){
       PiVet = new double[n_threads];
+      for (int k = 0; k<n_threads; k++) {
+         PiVet[k] = 0 ;
+      }
    }
 
    public void setPi(double valorPi, int idt){
       PiVet[idt] = valorPi;
-      System.out.println(PiVet[idt]);
+   //   System.out.println(PiVet[idt]);
    }
    
    public double getPi(int idt){
@@ -27,7 +30,7 @@ class Pi {
    public void validarErroRelativo(double piObtido){
       this.erro = (Math.abs(Math.PI - piObtido))/(Math.PI);
       if(this.erro > Math.pow(10, -10)) {
-         System.out.println("Erro relativo superior ao toleravel.");
+         System.out.println("Erro relativo superior ao toleravel.\n");
          System.out.println(this.erro);
       //por alguma razão, minha comparação não está funcionando corretamente.
       }
@@ -54,7 +57,7 @@ class CalcularPi extends Thread {
       pithreads[id] += (Math.pow(-1, j)*4.0) / (2 * j + 1);
      }
      System.out.println("Pi da thread " + id + " = " + pithreads[id]);
-     System.out.println("Thread " + id + " executando.");
+     System.out.println("Thread " + id + " executando.\n");
      this.pis.setPi(pithreads[id], id);  
    }
 
@@ -83,7 +86,6 @@ class LeibnizPi {
       for (int i=0; i<threads.length; i++) {
          final int qnt_threads = n_threads;
          threads[i] = new CalcularPi(qnt_threads, N, i, pis);
-
       }
 
       //iniciando as threads
@@ -99,9 +101,9 @@ class LeibnizPi {
 
       for (int i=0; i<threads.length; i++) {
          pi += pis.getPi(i);
-         System.out.println("Soma = " + pi);
+      //   System.out.println("\nSoma = " + pi);
       }
-      System.out.println("Pi = " + pi);
+      System.out.println("\nPi = " + pi);
       //System.out.println("Terminou"); 
       pis.validarErroRelativo(pi);
    }
